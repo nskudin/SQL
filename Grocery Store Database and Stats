@@ -1,0 +1,32 @@
+--Create a grocery store database
+
+CREATE TABLE store (id INTEGER PRIMARY KEY, item TEXT, section TEXT, price INTEGER, aisle INTEGER);
+
+INSERT INTO store VALUES (1, "papaya", "produce", 2.99, 4);
+INSERT INTO store VALUES (2, "banana", "produce", 0.99, 4);
+INSERT INTO store VALUES (3, "qtips", "hygiene", 2.99, 1);
+INSERT INTO store VALUES (4, "beans", "bulk", 0.99, 8);
+INSERT INTO store VALUES (5, "beyond burgers", "meat", 4.99, 6);
+INSERT INTO store VALUES (6, "salsa", "fresh", 3.25, 5);
+INSERT INTO store VALUES (7, "hummus", "fresh", 2.99, 5);
+INSERT INTO store VALUES (8, "papaya", "hygiene", 2.99, 1);
+INSERT INTO store VALUES (9, "chick'n nuggs", "meat", 4.99, 6);
+INSERT INTO store VALUES (10, "peas", "frozen", 0.99, 7);
+INSERT INTO store VALUES (11, "smoothie berries", "frozen", 2.99, 7);
+INSERT INTO store VALUES (12, "granola", "bulk", 1.99, 8);
+INSERT INTO store VALUES (13, "vitamin D", "health", 8.99, 2);
+INSERT INTO store VALUES (14, "nutritional yeast", "health", 2.99, 2);
+INSERT INTO store VALUES (15, "popcorn", "snacks", 1.99, 3);
+
+--display the database ordered by price. 
+SELECT * FROM store
+ORDER BY price desc; 
+
+--what is the avg price of items in the bulk section? 
+SELECT AVG(price) "avg bulk item price"
+FROM store
+where section='bulk'; 
+
+--display the database ordered by aisle.
+SELECT * FROM store ORDER BY aisle;
+
