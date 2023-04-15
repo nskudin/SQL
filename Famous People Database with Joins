@@ -1,0 +1,28 @@
+/* Create table about the people and what they do here */
+
+CREATE TABLE Famous_people (id INTEGER PRIMARY KEY AUTOINCREMENT, full_name TEXT, marriage_status TEXT, age INTEGER);
+
+INSERT INTO Famous_people (full_name, marriage_status, age) VALUES ("Jennifer Aniston", "single", 54);
+INSERT INTO Famous_people (full_name, marriage_status, age) VALUES ("Adam Sandler", "married", 56);
+INSERT INTO Famous_people (full_name, marriage_status, age) VALUES ("Ryan Renolds", "married", 46);
+INSERT INTO Famous_people (full_name, marriage_status, age) VALUES ("Blake Lively", "married", 35);
+INSERT INTO Famous_people (full_name, marriage_status, age) VALUES ("Ryan Gosling", "married", 42);
+INSERT INTO Famous_people (full_name, marriage_status, age) VALUES ("Eva Mendes", "married", 49);
+INSERT INTO Famous_people (full_name, marriage_status, age) VALUES ("Will Smith", "married", 54);
+INSERT INTO Famous_people (full_name, marriage_status, age) VALUES ("Emma Stone", "married", 34);
+
+CREATE TABLE Movies (id INTEGER PRIMARY KEY AUTOINCREMENT, movie_title TEXT, release_year INTEGER);
+
+INSERT INTO Movies (movie_title, release_year) VALUES ("Just Go With It", 2011);
+INSERT INTO Movies (movie_title, release_year) VALUES ("Just Go With It", 2011);
+INSERT INTO Movies (movie_title, release_year) VALUES ("Deadpool", 2016);
+INSERT INTO Movies (movie_title, release_year) VALUES ("Hick", 2011);
+INSERT INTO Movies (movie_title, release_year) VALUES ("La La Land", 2016);
+INSERT INTO Movies (movie_title, release_year) VALUES ("Hitch", 2005);
+INSERT INTO Movies (movie_title, release_year) VALUES ("Hitch", 2005);
+INSERT INTO Movies (movie_title, release_year) VALUES ("La La Land", 2016);
+
+SELECT Famous_people.full_name, Famous_people.age, Movies.movie_title
+FROM Famous_people
+LEFT OUTER JOIN Movies
+ON Famous_people.id=Movies.id;
