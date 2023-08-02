@@ -2,9 +2,6 @@
 select count(*) 
 FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
 WHERE type='Movie';
-#note the use of single quotes in WHERE type='Movie'
-#In PostgreSQL, you have to use single quotes to select strings,
-#because double quotes are part of the syntax for the FROM statement.
 
 #2. When was the most recent batch of tv shows and/or movies added to the database? 
 select max(date(date_added))
