@@ -1,0 +1,39 @@
+# For this project, I used City Bike Lane data from Break Into Tech Certification Course.
+# Then I created a table to insert City Bike Lane data into.
+# Finally, I performed analytics on the data using SQL - CTEs and Window Functions.
+
+CREATE TABLE BIT_DB.CityBikeLanes (
+id integer primary key,
+year_installed year not null,
+year_updated year not null,
+street varchar not null,
+width_feet integer not null,
+safetyrating integer not null,
+protected varchar not null)
+
+# Scenario: Your boss wants a list of all the bike lanes that have an average safety rating of 4.0 or higher. 
+She also wants to see the average safety rating for each of those bike lanes, and a label that says "Safe Lane".
+Provide these results using a CTE.
+
+WITH safety_average_CTE AS (
+SELECT C.street,
+AVG(safetyrating) as average_safetyrating
+FROM CityBikeLanes C
+GROUP BY C.street)
+
+SELECT street, average_safetyrating, 'Safe Lane'
+FROM safety_average_CTE
+WHERE average_safetyrating >=4.0
+
+# Now, the city has decided to remove the least safe bike lanes, make improvements on the bike lanes that are already somewhat safe, 
+and leave the most safe bike lanes as-is. You need to give your boss the list of all the bike lanes, 
+both safety ratings for each lane given by the two technicians, the average safety rating for each lane, 
+and a label with the recommendation as "Remove", "Leave As-Is", or "Improvements Needed".
+
+SELECT street, safetyrating,
+AVG(safetyrating) OVER (PARTITION BY street) as "Average_safety_rating",
+CASE WHEN AVG(safetyrating) OVER (PARTITION BY safetyrating) >= 4 THEN "Leave As-Is"
+    WHEN AVG(safetyrating) OVER (PARTITION BY safetyrating) < 2.5 THEN "Remove"
+    ELSE  "Improvements Needed"
+    END AS "Recommendation"
+FROM CityBikeLanes
